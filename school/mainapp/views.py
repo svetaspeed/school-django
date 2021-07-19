@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from .models import News
 
 def index(request):
-    return render(request, 'index.html')
+    news = News.objects.order_by('-id')
+    return render(request, 'index.html', {'title': 'Главная траница', 'news': news})
 
 def about(request):
     return render(request, 'about.html')

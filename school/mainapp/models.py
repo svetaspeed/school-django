@@ -5,9 +5,12 @@ class News(models.Model):
     title = models.CharField('Заголовок', max_length=50)
     text = models.TextField('Текст')
 
-
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 
 class Review(models.Model):
@@ -17,5 +20,9 @@ class Review(models.Model):
     voted_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.vote
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
 
