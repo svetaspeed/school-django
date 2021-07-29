@@ -11,18 +11,3 @@ class News(models.Model):
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
-
-
-class Review(models.Model):
-    vote = models.SmallIntegerField()
-    user = models.CharField('Имя', max_length=50)
-    text = models.TextField('Отзыв', null=True)
-    voted_on = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.vote
-
-    class Meta:
-        verbose_name = 'Отзыв'
-        verbose_name_plural = 'Отзывы'
-
