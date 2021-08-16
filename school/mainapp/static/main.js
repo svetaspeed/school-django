@@ -45,6 +45,29 @@ const handleSelect = (selection) => {
     }
 }
 
+const getNumericValue = (stringValue) =>{
+    let numericValue;
+    if (stringValue === 'first') {
+        numericValue = 1
+    }
+    else if (stringValue === 'second') {
+        numericValue = 2
+    }
+    else if (stringValue === 'third') {
+        numericValue = 3
+    }
+    else if (stringValue === 'fourth') {
+        numericValue = 4
+    }
+    else if (stringValue === 'fifth') {
+        numericValue = 5
+    }
+    else {
+        numericValue = 0
+    }
+    return numericValue
+}
+
 if (one) {
     const arr = [one, two, three, four, five]
 
@@ -55,8 +78,25 @@ if (one) {
     arr.forEach(item=> item.addEventListener('click', (event)=>{
         const val = event.target.id
 
+        let isSubmit = false
         form.addEventListener('submit', e=>{
             e.preventDefault()
+            if (isSubmit) {
+                return
+            }
+            const id = e.target.id
+            const val_num = getNumericValue(val)
+
+            $.ajax({
+                type: 'POST',
+                url: '/../reviews/rate/',
+                data: {
+                    'csrfmiddlewaretoken': csrf[0].value,
+                    'el_id': id,
+                    'val': val_num
+
+                }
+            })
         })
     }))
 }
